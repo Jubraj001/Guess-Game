@@ -13,8 +13,8 @@ export default function App() {
     setUserNumber(pickedNumber);
   }
   let screen = <StartGameScreen onPickNumber={pickedNumberHandler}/>;
-  if(userNumber){
-    screen=<GameScreen/>;
+  if(userNumber){ //If the there is a number that the user has entered redirect it to gamescreen otherwise startgamescreen
+    screen=<GameScreen userNumber={userNumber}/>;
   }
   return (
     <LinearGradient colors={[Colors.primary700,Colors.accent500]}style={styles.rootScreen}>

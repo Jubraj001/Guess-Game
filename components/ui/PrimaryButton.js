@@ -1,5 +1,5 @@
 import { View, Text, Pressable, StyleSheet } from "react-native"
-import Colors from "../constants/colors"
+import Colors from "../../constants/colors"
 export default function PrimaryButton(props) {
   return (
       <View style={styles.buttonOuterContainer}>
@@ -10,7 +10,7 @@ export default function PrimaryButton(props) {
   )
 }
 
-const styles =StyleSheet.create({
+const styles=StyleSheet.create({
     buttonOuterContainer:{
         borderRadius: 28,
         margin:4,
