@@ -3,6 +3,8 @@ import { View, Text, StyleSheet, Alert } from "react-native";
 import NumberContainer from "../components/game/NumberContainer";
 import PrimaryButton from "../components/ui/PrimaryButton";
 import Title from "../components/ui/Title";
+import Card from "../components/ui/Card";
+import InstructionText from "../components/ui/InstructionText";
 
 function generateRandomNumber(min,max,exclude) // random number generator except for the number that is given by the user
 {
@@ -44,13 +46,13 @@ export default function GameScreen({userNumber, onGameOver}) {
         <View style={styles.screen}>
             <Title>Opponent's Guess</Title>
             <NumberContainer>{currentGuess}</NumberContainer>
-            <View>
-                <Text>Higher or Lower?</Text>
+            <Card>
+                <InstructionText>Higher or Lower?</InstructionText>
                 <View>
                     <PrimaryButton onPress={nextGuessHandler.bind(this,'lower')}>-</PrimaryButton>
                     <PrimaryButton onPress={nextGuessHandler.bind(this,'greater')}>+</PrimaryButton>
                 </View>
-            </View>
+            </Card>
             <View>
                 {/* LOG ROUNDS */}
             </View>
@@ -60,7 +62,7 @@ export default function GameScreen({userNumber, onGameOver}) {
 const styles=StyleSheet.create({
     screen:{
         flex:1,
-        padding:24
+        padding:40
     },
     title:{
         fontSize: 24,
