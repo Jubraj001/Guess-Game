@@ -5,6 +5,7 @@ import PrimaryButton from "../components/ui/PrimaryButton";
 import Title from "../components/ui/Title";
 import Card from "../components/ui/Card";
 import InstructionText from "../components/ui/InstructionText";
+import {Ionicons} from '@expo/vector-icons';
 
 function generateRandomNumber(min,max,exclude) // random number generator except for the number that is given by the user
 {
@@ -47,10 +48,18 @@ export default function GameScreen({userNumber, onGameOver}) {
             <Title>Opponent's Guess</Title>
             <NumberContainer>{currentGuess}</NumberContainer>
             <Card>
-                <InstructionText>Higher or Lower?</InstructionText>
-                <View>
-                    <PrimaryButton onPress={nextGuessHandler.bind(this,'lower')}>-</PrimaryButton>
-                    <PrimaryButton onPress={nextGuessHandler.bind(this,'greater')}>+</PrimaryButton>
+                <InstructionText style={styles.instructionText}>Higher or Lower?</InstructionText>
+                <View style={styles.buttonsContainer}>
+                    <View style={styles.buttonContainer}>
+                        <PrimaryButton onPress={nextGuessHandler.bind(this,'lower')}>
+                            <Ionicons name="md-remove" size={24} color="white"/>
+                        </PrimaryButton>
+                    </View>
+                    <View style={styles.buttonContainer}>
+                        <PrimaryButton onPress={nextGuessHandler.bind(this,'greater')}>
+                        <Ionicons name="md-add" size={24} color="white"/>
+                        </PrimaryButton>
+                    </View>
                 </View>
             </Card>
             <View>
@@ -64,6 +73,9 @@ const styles=StyleSheet.create({
         flex:1,
         padding:40
     },
+    instructionText:{
+        marginBottom:12
+    },
     title:{
         fontSize: 24,
         fontWeight:'bold',
@@ -72,5 +84,11 @@ const styles=StyleSheet.create({
         borderWidth:2,
         borderColor:'#ddb52f',
         padding:12
+    },
+    buttonsContainer:{
+        flexDirection:'row' //buttons will appear side by side
+    },
+    buttonContainer:{
+        flex:1 //both buttons will take the exact amount of space
     }
 })
