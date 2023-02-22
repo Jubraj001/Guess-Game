@@ -13,6 +13,7 @@ SplashScreen.preventAutoHideAsync();
 export default function App() {
   const [userNumber, setUserNumber]=useState();
   const [gameOver, setGameOver] = useState(true);
+  const [guessRounds,setGuessRounds] = useState(0);
 
   const [fontsLoaded]=useFonts({
     'open-sans': require('./assets/fonts/OpenSans-Regular.ttf'),
@@ -32,8 +33,13 @@ if(fontsLoaded){
     setUserNumber(pickedNumber);
     setGameOver(false);
   }
-  function gameOverHandler(){
+  function gameOverHandler(numberOfRounds){
     setGameOver(true);
+    setGuessRounds(numberOfRounds);
+  }
+  function startNewGameHandler(){
+      setUserNumber(null);
+      setGuessRounds(0);
   }
   let screen = <StartGameScreen onPickNumber={pickedNumberHandler}/>;
   if(userNumber){ //If the there is a number that the user has entered redirect it to gamescreen otherwise startgamescreen
@@ -41,7 +47,7 @@ if(fontsLoaded){
   }
 
   if(gameOver && userNumber){
-    screen = <GameOverScreen/>
+    screen = <GameOverScreen userNumber={userNumber} roundsNumber={guessRounds} onStartNewGame={startNewGameHandler}/>
   }
 
   return (
