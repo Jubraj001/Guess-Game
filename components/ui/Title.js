@@ -13,6 +13,7 @@ const styles=StyleSheet.create({
         color: 'white',
         borderWidth:2,
         borderColor:'white',
-        padding:12
+        padding:12,
+        maxWidth:"80%" //% refers to the parent container that holds this component
     }
 })
